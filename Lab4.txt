@@ -1,0 +1,91 @@
+Cu aplicantie client-server 10, fara 8 (recomandat python)
+Clientul cripteaza, serverul decripteaza.
+Poate pica la examenul scris
+
+Oricare varianta este acceptata
+
+Var. I
+Schimb de chei cu Diffie-Hellman
+
+Date publice
+q-nr prim
+a-radacina primitiva a lui q
+
+avem 2 calculatoare:
+
+A						B
+___________________________________________________________
+Genereaza o cheie privata X_A<q       	-,- X_B<q
+Calc. Y_A=(a^X_A)mod q			Y_B=(a^Y_B) mod q
+Y_B					Y_A
+K=((Y_B)^X_A) mod q			K=((Y_a)^X_B) mod q
+
+K=cheia de criptare
+
+Radacina primitiva se da de la tastatura.
+Cum o pot determina manual (pt examen)
+
+ex.q=7
+a=3
+a   a^1mod7    a^2mod7	a^3mod7    a^4mod7	a^5mod7    a^5mod7
+1	1	1...	
+2	2	4	  1	    2
+3	3	2	  6	    4		  5	     1      ->am obtinut numai valori distincte, 3 este radacina primitiva.
+4
+5
+6
+
+Generam random X_A,X_B, dar ambele strict < q
+A		B
+__________________
+X_A=6		X_B=5
+Y_A=1		Y_B=5
+Valorile Y_A si Y_B le transmit in retea
+Y_B=5		Y_A=1
+K=1		K=1
+
+Dupa ce am obtinut K-ul, criptam un anumit text cu Cifrul lui Cezar
+K=1
+ABC....Z
+123....26
+criptare(X)=(X+K)mod26
+
+text: cifru
+text criptat: djgsv
+Pentru decriptare facem opusul.
+
+1.Stabilim conexiune intre client-server
+2.Date de intrare q nr prim si a rad. primitiva.
+3.Calc. K-ul (De catre ambele calculatoare)
+4.Criptez un mesaj cu K-ul si il trimit la destinatie
+5.Primesc mesajul la server, il afisez si il decriptez.
+
+Var. II
+Cifru cu transpozitie
+Ambele calculatoare sunt in posesia unei chei
+cheia-litere distincte.
+Input: cheia si text-ul
+
+ex. cheia: C H E I A
+	   2 4 3 5 1
+scriu ordinea aparitiilor in alfabet
+formez o matrice cu un numar fix de coloane cat dimensiunea cheii.
+	
+cuvant:     A n a   a
+	    r e   m e
+	    r e a b c
+completam cu litere in ordine pana completez matricea
+text criptat:aec   Arr    a  a   nee     nb
+	     col 1 col 2  col 3  col 4  col 5
+
+Decriptare:	CHEIA
+Nr. linii: dim cuv./dim cheie = 3
+Si iau pe rand fiecare coloana in ordine ci o completez
+
+clientul cripteaza
+server-ul primeste textul si cheia si il decripteaza
+
+
+
+
+
